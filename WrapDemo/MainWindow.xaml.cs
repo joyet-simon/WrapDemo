@@ -29,12 +29,9 @@ namespace WrapDemo
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Image newImage = new Image();
-            OpenFileDialog of = new Microsoft.Win32.OpenFileDialog();
-            if (of.ShowDialog() == true)
-            {
-                newImage.Source = new BitmapImage(new Uri(of.FileName));
-            }
-            newImage.Margin = new System.Windows.Thickness(10,10, 10, 10);
+            OpenFileDialog of = new OpenFileDialog();
+            if (of.ShowDialog() == true) { newImage.Source = new BitmapImage(new Uri(of.FileName)); }
+            newImage.Margin = new Thickness(10, 10, 10, 10);
             newImage.Height = 100;
             wrap.Children.Add(newImage);
         }
