@@ -1,18 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WrapDemo
 {
@@ -28,12 +19,22 @@ namespace WrapDemo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            Random rand = new Random();
             Image newImage = new Image();
             OpenFileDialog of = new OpenFileDialog();
             if (of.ShowDialog() == true) { newImage.Source = new BitmapImage(new Uri(of.FileName)); }
             newImage.Margin = new Thickness(10, 10, 10, 10);
             newImage.Height = 100;
-            wrap.Children.Add(newImage);
+            newImage.Width = 100;
+            Int32 ranRot = (Int32)rand.Next(-45, 45);
+            RotateTransform rt = new RotateTransform(ranRot);
+            newImage.RenderTransform = rt;
+            Int32 ranRotAbs = Math.Abs(ranRot);
+            Canvas.SetTop(newImage, rand.Next(-ranRot + 10, (Int32)(canvas.Height - newImage.Height - ranRotAbs - 10)));
+            Canvas.SetLeft(newImage, rand.Next(ranRot + 15, (Int32)(canvas.Width - newImage.Width - ranRotAbs - 50)));
+            canvas.Children.Add(newImage);
+
         }
     }
 }

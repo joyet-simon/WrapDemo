@@ -9,7 +9,7 @@
     <Window.Resources>
         <ControlTemplate x:Key="TemplateBut">
             <Border x:Name="Contour"
-                    CornerRadius="20"
+                    CornerRadius="50,0,50,0"
                     BorderThickness="2"
                     Background="LightBlue">
                 <ContentPresenter VerticalAlignment="Center"
@@ -29,6 +29,10 @@
             <Setter Property="Border.CornerRadius" Value="30"/>
             <Setter Property="Control.Margin" Value="10"/>
         </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Control.Padding" Value="5,5,5,10"/>
+            <Setter Property="Control.Background" Value="White"/>
+        </Style>
     </Window.Resources>
     <Grid >
         <Grid.RowDefinitions>
@@ -44,16 +48,16 @@
                 <Button Name="bt1"
                         Click="Button_Click"
                         Style="{StaticResource Bouton}"
-                        Content="Ajouter" />
+                        Content="Ajouter" IsDefault="True" />
             </StackPanel>
         </Border>
         <Border Style="{StaticResource Border}"
                 BorderBrush="Red"
                 Grid.Row="1" Background="#50FFC2BB">
-            <WrapPanel Name="wrap"
+            <Canvas Name="canvas"
                        Height="250"
                        Width="792">
-            </WrapPanel>
+            </Canvas>
         </Border>
     </Grid>
 </Window>
